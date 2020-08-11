@@ -16,16 +16,13 @@ def read(fname):
 def from_here(relative_path):
     return path.join(path.dirname(__file__), relative_path)
 
-
-requirements_txt = list(map(str, map(
-    attrgetter("req"),
-    parse_requirements(from_here("requirements.txt"), session="")
-)))
+with open('requirements.txt') as fp:
+    install_requires = fp.read()
 
 setup(
     name="win10toast",
     version="0.9",
-    install_requires=requirements_txt,
+    install_requires=install_requires,
     packages=["win10toast"],
     license="BSD",
     url="https://github.com/jithurjacob/Windows-10-Toast-Notifications",
